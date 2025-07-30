@@ -1,0 +1,11 @@
+customerID,gender,SeniorCitizen,Partner,Dependents,tenure,PhoneService,MonthlyCharges,TotalCharges,Churn
+C001,Male,0,Yes,No,1,Yes,29.85,29.85,No
+C002,Female,1,No,No,34,Yes,56.95,1889.5,Yes
+C003,Female,0,Yes,Yes,12,No,53.85,108.15,No
+C004,Male,1,No,No,45,Yes,42.3,1840.75,Yes
+C005,Female,0,Yes,Yes,5,No,70.7,353.5,No
+C006,Male,0,No,Yes,23,Yes,89.1,2041.35,Yes
+C007,Male,1,Yes,No,56,Yes,33.9,1900.25,No
+C008,Female,1,Yes,No,2,No,55.2,110.1,Yes
+C009,Female,0,No,Yes,14,Yes,49.95,699.3,No
+C010,Male,0,No,No,28,Yes,29.95,839.5,No
