@@ -10,7 +10,17 @@ from sklearn.metrics import classification_report, confusion_matrix
 import numpy as np
 
 # Load data
-df = pd.read_csv("customer_churn.csv")
+try:
+    df = pd.read_csv("customer_churn.csv")
+    if df.empty:
+        st.error("Dataset is empty")
+        st.stop()
+except FileNotFoundError:
+    st.error("customer_churn.csv file not found")
+    st.stop()
+except Exception as e:
+    st.error(f"Error loading data: {str(e)}")
+    st.stop()
 
 st.title("Customer Churn Analysis Dashboard")
 
