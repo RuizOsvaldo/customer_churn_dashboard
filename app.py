@@ -199,7 +199,7 @@ elif page == "📊 Data Exploration":
             st.plotly_chart(fig_hist, use_container_width=True)
         
         with col2:
-            # Box plot by churn status
+            # Box plot by churn status - FIXED VERSION
             fig_box = px.box(
                 df, 
                 x='Churn', 
@@ -208,7 +208,10 @@ elif page == "📊 Data Exploration":
                 color='Churn',
                 color_discrete_map={0: 'lightblue', 1: 'salmon'}
             )
-            fig_box.update_xaxis(ticktext=['Retained', 'Churned'], tickvals=[0, 1])
+            # FIXED: Use update_layout instead of update_xaxis
+            fig_box.update_layout(
+                xaxis=dict(ticktext=['Retained', 'Churned'], tickvals=[0, 1])
+            )
             st.plotly_chart(fig_box, use_container_width=True)
         
         # Feature statistics
@@ -260,8 +263,11 @@ elif page == "📊 Data Exploration":
                     text='Churn_Rate'
                 )
                 fig_bar.update_traces(texttemplate='%{text:.1%}', textposition='outside')
-                fig_bar.update_layout(yaxis_title="Churn Rate")
-                fig_bar.update_yaxis(tickformat='.1%')
+                # FIXED: Use update_layout instead of separate updates
+                fig_bar.update_layout(
+                    yaxis_title="Churn Rate",
+                    yaxis=dict(tickformat='.1%')
+                )
                 st.plotly_chart(fig_bar, use_container_width=True)
 
 elif page == "🤖 Model Comparison":
@@ -417,7 +423,8 @@ elif page == "🤖 Model Comparison":
             title='Model Performance Metrics Comparison',
             height=500
         )
-        fig_comparison.update_yaxis(range=[0, 1])
+        # FIXED: Use update_layout instead of update_yaxis
+        fig_comparison.update_layout(yaxis=dict(range=[0, 1]))
         st.plotly_chart(fig_comparison, use_container_width=True)
 
 elif page == "📈 Performance Analysis":
@@ -466,12 +473,13 @@ elif page == "📈 Performance Analysis":
                 color_continuous_scale="Blues",
                 title=f"Confusion Matrix - {selected_model}"
             )
+            # FIXED: Use update_layout instead of separate updates
             fig_cm.update_layout(
                 xaxis_title="Predicted",
-                yaxis_title="Actual"
+                yaxis_title="Actual",
+                xaxis=dict(ticktext=['Retained', 'Churned'], tickvals=[0, 1]),
+                yaxis=dict(ticktext=['Retained', 'Churned'], tickvals=[0, 1])
             )
-            fig_cm.update_xaxis(ticktext=['Retained', 'Churned'], tickvals=[0, 1])
-            fig_cm.update_yaxis(ticktext=['Retained', 'Churned'], tickvals=[0, 1])
             
             st.plotly_chart(fig_cm, use_container_width=True)
             
@@ -558,6 +566,7 @@ elif page == "📈 Performance Analysis":
                 title=f'Cross-Validation vs Test Performance - {selected_model}',
                 height=400
             )
+            # FIXED: Use update_layout instead of update_yaxis
             fig_cv.update_layout(yaxis=dict(range=[0, 1]))
             st.plotly_chart(fig_cv, use_container_width=True)
         
