@@ -558,7 +558,7 @@ elif page == "📈 Performance Analysis":
                 title=f'Cross-Validation vs Test Performance - {selected_model}',
                 height=400
             )
-            fig_cv.update_yaxis(range=[0, 1])
+            fig_cv.update_layout(yaxis=dict(range=[0, 1]))
             st.plotly_chart(fig_cv, use_container_width=True)
         
         st.markdown("---")
